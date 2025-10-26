@@ -4,10 +4,11 @@ import it.unibo.collections.design.api.Product;
 import it.unibo.collections.design.api.Warehouse;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.HashSet;
 
 public class WarehouseImpl implements Warehouse{
 
-    private LinkedHashSet<Product> products;
+    private final LinkedHashSet<Product> products = new LinkedHashSet<>();
 
     /**
      * Adds a product, assuming there is no other with same name already there.
@@ -15,7 +16,7 @@ public class WarehouseImpl implements Warehouse{
      * @param p
      *            the product to add
      */
-    public void addProduct(Product p){
+    public void addProduct(final Product p){
         products.add(p);
     }
 
@@ -27,7 +28,13 @@ public class WarehouseImpl implements Warehouse{
      * @return a collection of all registered products names.
      */
     public Set<String> allNames(){
-        return null;
+        Set<String> s = new HashSet<String>();
+        var iter = products.iterator();
+        while (iter.hasNext()){
+            s.add(iter.next().getName());
+        }
+        
+        return s;
     }
 
     /**
@@ -49,8 +56,8 @@ public class WarehouseImpl implements Warehouse{
      *            the product
      * @return true if the {@link Warehouse} contains the {@link Product}.
      */
-    public boolean containsProduct(Product p){
-        return false;
+    public boolean containsProduct(final Product p){
+        return products.contains(p);
     }
 
     /**
@@ -61,8 +68,12 @@ public class WarehouseImpl implements Warehouse{
      * @return the amount of the product with that name, or -1 if it is not
      *         there
      */
-    public double getQuantity(String name){
+    public double getQuantity(final String name){
+        for( final var p : products ){
+            if (p.getName().equals(name)){
+                return p.getQuantity();
+            }
+        }
         return 0;
     }
-
 }
