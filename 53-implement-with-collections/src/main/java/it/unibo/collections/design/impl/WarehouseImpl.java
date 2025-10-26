@@ -45,7 +45,7 @@ public class WarehouseImpl implements Warehouse{
      * @return a collection of all registered products.
      */
     public Set<Product> allProducts(){
-        return this.products;
+        return new LinkedHashSet<>(this.products);
     }
 
     /**
@@ -74,6 +74,6 @@ public class WarehouseImpl implements Warehouse{
                 return p.getQuantity();
             }
         }
-        return 0;
+        return -1;
     }
 }
