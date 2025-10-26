@@ -25,12 +25,18 @@ public final class UseSetWithOrder {
          * The comparator must convert the strings to double, then compare the doubles to find the biggest.
          * The comparator does not need to deal with the case of Strings which are not parseable as doubles.
          */
+        Set<String> set = new TreeSet<>(new CompareStringsAsDoubles());
         /*
          * 2) Inserts in the set a hundred strings containing randomly generated numbers
          * (use Math.random(), and convert to String appropriately)
          */
+        // System.out.println(Math.random());
+        for (int i = 1; i <= 100; i++){
+            set.add(Double.toString(Math.random() * 100));
+        }
         /*
          * 3) Prints the set, which must be ordered
          */
+        System.out.print(set);
     }
 }
