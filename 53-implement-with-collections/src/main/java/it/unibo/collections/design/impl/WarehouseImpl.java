@@ -16,7 +16,7 @@ public class WarehouseImpl implements Warehouse{
      *            the product to add
      */
     public void addProduct(Product p){
-        
+        products.add(p);
     }
 
     /**
